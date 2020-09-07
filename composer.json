@@ -16,6 +16,7 @@
     },
     "require-dev": {
         "monolog/monolog": "^2.1",
+        "psr/log": "^1.1",
         "wyrihaximus/async-test-utilities": "^2.3",
         "yuloh/container": "^1.0"
     },
