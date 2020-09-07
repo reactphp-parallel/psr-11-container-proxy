@@ -8,6 +8,7 @@
 
     <file>src</file>
     <file>tests</file>
+    <file>examples</file>
 
     <rule ref="WyriHaximus-OSS" />
 </ruleset>
