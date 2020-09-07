@@ -1,0 +1,57 @@
+{
+    "name": "react-parallel/psr-11-container-proxy",
+    "description": "\ud83d\udef0\ud83d\ude80\ud83d\udef8 PSR-11 container proxy",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Cees-Jan Kiewiet",
+            "email": "ceesjank@gmail.com",
+            "homepage": "http://wyrihaximus.net/"
+        }
+    ],
+    "require": {
+        "php": "^7.4",
+        "psr/container": "^1.0",
+        "react-parallel/object-proxy": "dev-master"
+    },
+    "require-dev": {
+        "monolog/monolog": "^2.1",
+        "wyrihaximus/async-test-utilities": "^2.3",
+        "yuloh/container": "^1.0"
+    },
+    "config": {
+        "platform": {
+            "php": "7.4.7"
+        },
+        "sort-packages": true
+    },
+    "extra": {
+        "react-parallel": {
+            "object-proxy": {
+                "interfaces-to-proxy": [
+                    "Psr\\Container\\ContainerInterface"
+                ]
+            }
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "ReactParallel\\Psr11ContainerProxy\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "ReactParallel\\Tests\\Psr11ContainerProxy\\": "tests/"
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "scripts": {
+        "post-install-cmd": [
+            "composer normalize"
+        ],
+        "post-update-cmd": [
+            "composer normalize"
+        ]
+    }
+}
