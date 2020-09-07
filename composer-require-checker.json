@@ -1,0 +1,22 @@
+{
+  "symbol-whitelist" : [
+    "null", "true", "false",
+    "static", "self", "parent",
+    "array", "string", "int", "float", "bool", "iterable", "callable", "void", "object",
+    "WyriHaximus\\Constants\\Boolean\\FALSE_", "WyriHaximus\\Constants\\Boolean\\TRUE_",
+    "WyriHaximus\\Constants\\Numeric\\ZERO", "WyriHaximus\\getIn", "WyriHaximus\\Constants\\Numeric\\TWO",
+    "Composer\\Composer", "Composer\\Config", "Composer\\IO\\IOInterface", "Composer\\Script\\Event",
+    "Composer\\EventDispatcher\\EventSubscriberInterface", "Composer\\Package\\RootPackageInterface",
+    "Composer\\Plugin\\PluginInterface", "Composer\\Script\\ScriptEvents"
+  ],
+  "php-core-extensions" : [
+    "Core",
+    "date",
+    "pcre",
+    "Phar",
+    "Reflection",
+    "SPL",
+    "standard"
+  ],
+  "scan-files" : []
+}

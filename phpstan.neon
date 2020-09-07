@@ -1,0 +1,11 @@
+parameters:
+	ignoreErrors:
+		- '#but containers should not be injected#'
+	ergebnis:
+		classesAllowedToBeExtended:
+			- Exception
+			- Monolog\Handler\AbstractHandler
+			- ReactParallel\ObjectProxy\Generated\ProxyList
+
+includes:
+	- vendor/wyrihaximus/async-test-utilities/rules.neon

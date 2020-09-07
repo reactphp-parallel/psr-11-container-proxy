@@ -1,0 +1,23 @@
+{
+    "timeout": 120,
+    "source": {
+        "directories": [
+            "src"
+        ],
+        "excludes": [
+            "Composer",
+            "AbstractGeneratedProxy"
+        ]
+    },
+    "logs": {
+        "text": "infection.log"
+    },
+    "mutators": {
+        "@default": true,
+        "PublicVisibility": {
+            "ignore": [
+                "ReactParallel\\ObjectProxy\\NonExistentInterface::interface::22"
+            ]
+        }
+    }
+}
