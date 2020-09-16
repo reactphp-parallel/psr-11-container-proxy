@@ -24,4 +24,9 @@ final class ContainerProxy
     {
         return new ThreadContainerProxy($container, $this->proxy);
     }
+
+    public function proxy(): ContainerInterface
+    {
+        return $this->proxy;
+    }
 }
