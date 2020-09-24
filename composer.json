@@ -12,7 +12,7 @@
     "require": {
         "php": "^7.4",
         "psr/container": "^1.0",
-        "react-parallel/object-proxy": "dev-master"
+        "react-parallel/object-proxy": "dev-add-metrics"
     },
     "require-dev": {
         "monolog/monolog": "^2.1",
