@@ -12,7 +12,7 @@
     "require": {
         "php": "^7.4",
         "psr/container": "^1.0",
-        "react-parallel/object-proxy": "dev-use-upd-sockets-for-object-distruction"
+        "react-parallel/object-proxy": "dev-one-shared-channel"
     },
     "require-dev": {
         "monolog/monolog": "^2.1",
