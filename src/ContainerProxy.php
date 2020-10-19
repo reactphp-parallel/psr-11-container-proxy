@@ -17,7 +17,7 @@ final class ContainerProxy
          * @psalm-suppress PropertyTypeCoercion
          * @phpstan-ignore-next-line
          */
-        $this->proxy = $proxy->create($container, ContainerInterface::class);
+        $this->proxy = $proxy->create($container, ContainerInterface::class, true);
     }
 
     public function create(ContainerInterface $container): ContainerInterface
