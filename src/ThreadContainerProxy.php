@@ -7,6 +7,7 @@ namespace ReactParallel\Psr11ContainerProxy;
 use Psr\Container\ContainerInterface;
 use ReactParallel\ObjectProxy\AbstractGeneratedProxy;
 use ReactParallel\ObjectProxy\Generated\ProxyList;
+use ReactParallel\ObjectProxy\Proxy\DeferredCallHandler;
 
 use function array_key_exists;
 
@@ -33,6 +34,7 @@ final class ThreadContainerProxy extends ProxyList implements ContainerInterface
         if (array_key_exists($id, self::KNOWN_INTERFACE)) {
             $proxy = $this->remote->get($id);
             if ($proxy instanceof AbstractGeneratedProxy) {
+                $proxy->setDeferredCallHandler($this->local->get(DeferredCallHandler::class));
                 $proxy->notifyMainThreadAboutOurExistence();
             }
             return $proxy;
