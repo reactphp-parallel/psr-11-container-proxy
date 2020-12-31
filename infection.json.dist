@@ -14,9 +14,11 @@
     },
     "mutators": {
         "@default": true,
+        "InstanceOf_": false,
+        "MethodCallRemoval": false,
         "PublicVisibility": {
             "ignore": [
-                "ReactParallel\\ObjectProxy\\NonExistentInterface::interface::22"
+                "ReactParallel\\ObjectProxy\\NonExistentInterface::interface"
             ]
         }
     }
