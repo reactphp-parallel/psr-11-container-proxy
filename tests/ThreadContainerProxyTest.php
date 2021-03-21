@@ -7,6 +7,7 @@ namespace ReactParallel\Tests\Psr11ContainerProxy;
 use Monolog\Logger;
 use Psr\Container\ContainerInterface;
 use Psr\Log\LoggerInterface;
+use ReactParallel\ObjectProxy\Generated\ProxyList;
 use ReactParallel\Psr11ContainerProxy\ThreadContainerProxy;
 use stdClass;
 use WyriHaximus\AsyncTestUtilities\AsyncTestCase;
@@ -30,7 +31,7 @@ final class ThreadContainerProxyTest extends AsyncTestCase
         $remote->get('fake')->shouldNotBeCalled();
         $remote->get(LoggerInterface::class)->shouldBeCalled()->willReturn($logger);
 
-        $proxy = new ThreadContainerProxy($local->reveal(), $remote->reveal());
+        $proxy = new ThreadContainerProxy(new ProxyList(), $local->reveal(), $remote->reveal());
 
         self::assertTrue($proxy->has('fake'));
         self::assertTrue($proxy->has(LoggerInterface::class));

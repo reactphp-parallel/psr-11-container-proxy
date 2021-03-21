@@ -6,13 +6,16 @@ namespace ReactParallel\Psr11ContainerProxy;
 
 use Psr\Container\ContainerInterface;
 use ReactParallel\ObjectProxy\Proxy;
+use ReactParallel\ObjectProxy\ProxyListInterface;
 
 final class ContainerProxy
 {
+    private ProxyListInterface $proxyList;
     private ContainerInterface $proxy;
 
-    public function __construct(ContainerInterface $container, Proxy $proxy)
+    public function __construct(ProxyListInterface $proxyList, ContainerInterface $container, Proxy $proxy)
     {
+        $this->proxyList = $proxyList;
         /**
          * @psalm-suppress PropertyTypeCoercion
          * @phpstan-ignore-next-line
@@ -22,7 +25,7 @@ final class ContainerProxy
 
     public function create(ContainerInterface $container): ContainerInterface
     {
-        return new ThreadContainerProxy($container, $this->proxy);
+        return new ThreadContainerProxy($this->proxyList, $container, $this->proxy);
     }
 
     public function proxy(): ContainerInterface

@@ -7,7 +7,8 @@ namespace ReactParallel\Tests\Psr11ContainerProxy;
 use React\EventLoop\Factory as EventLoopFactory;
 use ReactParallel\Factory;
 use ReactParallel\ObjectProxy\Configuration;
-use ReactParallel\ObjectProxy\Generated\Psr__Container_ContainerInterfaceProxy;
+use ReactParallel\ObjectProxy\Generated\Proxies\Psr\Container\ContainerInterface;
+use ReactParallel\ObjectProxy\Generated\ProxyList;
 use ReactParallel\ObjectProxy\Proxy;
 use ReactParallel\Psr11ContainerProxy\ContainerProxy;
 use ReactParallel\Psr11ContainerProxy\ThreadContainerProxy;
@@ -25,7 +26,7 @@ final class ContainerProxyTest extends AsyncTestCase
         $factory        = new Factory($loop);
         $configuration  = new Configuration($factory);
         $proxy          = new Proxy($configuration);
-        $containerProxy = new ContainerProxy(new Container(), $proxy);
+        $containerProxy = new ContainerProxy(new ProxyList(), new Container(), $proxy);
 
         self::assertInstanceOf(ThreadContainerProxy::class, $containerProxy->create(new Container()));
     }
@@ -39,8 +40,8 @@ final class ContainerProxyTest extends AsyncTestCase
         $factory        = new Factory($loop);
         $configuration  = new Configuration($factory);
         $proxy          = new Proxy($configuration);
-        $containerProxy = new ContainerProxy(new Container(), $proxy);
+        $containerProxy = new ContainerProxy(new ProxyList(), new Container(), $proxy);
 
-        self::assertInstanceOf(Psr__Container_ContainerInterfaceProxy::class, $containerProxy->proxy());
+        self::assertInstanceOf(ContainerInterface::class, $containerProxy->proxy());
     }
 }
