@@ -6,32 +6,32 @@ namespace ReactParallel\Psr11ContainerProxy;
 
 use Psr\Container\ContainerInterface;
 use ReactParallel\ObjectProxy\AbstractGeneratedProxy;
-use ReactParallel\ObjectProxy\Generated\ProxyList;
 use ReactParallel\ObjectProxy\Proxy\DeferredCallHandler;
+use ReactParallel\ObjectProxy\ProxyListInterface;
 
-use function array_key_exists;
-
-final class ThreadContainerProxy extends ProxyList implements ContainerInterface
+final class ThreadContainerProxy implements ContainerInterface
 {
+    private ProxyListInterface $proxyList;
     private ContainerInterface $local;
     private ContainerInterface $remote;
 
-    public function __construct(ContainerInterface $local, ContainerInterface $remote)
+    public function __construct(ProxyListInterface $proxyList, ContainerInterface $local, ContainerInterface $remote)
     {
-        $this->local  = $local;
-        $this->remote = $remote;
+        $this->proxyList = $proxyList;
+        $this->local     = $local;
+        $this->remote    = $remote;
     }
 
     // phpcs:disable
     public function has($id)
     {
-        return array_key_exists($id, self::KNOWN_INTERFACE) || $this->local->has($id);
+        return $this->proxyList->has($id) || $this->local->has($id);
     }
 
     // phpcs:disable
     public function get($id)
     {
-        if (array_key_exists($id, self::KNOWN_INTERFACE)) {
+        if ($this->proxyList->has($id)) {
             $proxy = $this->remote->get($id);
             if ($proxy instanceof AbstractGeneratedProxy) {
                 $proxy->setDeferredCallHandler($this->local->get(DeferredCallHandler::class));
