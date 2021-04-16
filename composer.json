@@ -1,5 +1,6 @@
 {
     "name": "react-parallel/psr-11-container-proxy",
+    "type": "composer-plugin",
     "description": "\ud83d\udef0\ud83d\ude80\ud83d\udef8 PSR-11 container proxy",
     "license": "MIT",
     "authors": [
@@ -11,8 +12,11 @@
     ],
     "require": {
         "php": "^7.4",
+        "composer-plugin-api": "^2",
+        "illuminate/collections": "^8.18",
         "psr/container": "^1.0",
-        "react-parallel/object-proxy": "dev-master"
+        "react-parallel/object-proxy": "dev-master",
+        "wyrihaximus/string-get-in": "^1.0"
     },
     "require-dev": {
         "monolog/monolog": "^2.1",
@@ -27,10 +31,16 @@
         "sort-packages": true
     },
     "extra": {
+        "class": "ReactParallel\\Psr11ContainerProxy\\Composer\\Installer",
         "react-parallel": {
             "object-proxy": {
                 "interfaces-to-proxy": [
                     "Psr\\Container\\ContainerInterface"
+                ]
+            },
+            "psr-11-container-proxy": {
+                "custom-overrides": [
+                    "react-parallel.psr-11-container-proxy.dummy"
                 ]
             }
         }
@@ -53,6 +63,9 @@
         ],
         "post-update-cmd": [
             "composer normalize"
+        ],
+        "pre-autoload-dump": [
+            "ReactParallel\\Psr11ContainerProxy\\Composer\\Installer::locateCustomOverrides"
         ]
     }
 }
