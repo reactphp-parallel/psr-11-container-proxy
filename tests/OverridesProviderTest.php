@@ -6,6 +6,7 @@ namespace ReactParallel\Tests\Psr11ContainerProxy;
 
 use ReactParallel\ObjectProxy\ProxyList\Proxy;
 use ReactParallel\ObjectProxy\ProxyListInterface;
+use ReactParallel\Psr11ContainerProxy\Generated\CustomOverridesList;
 use ReactParallel\Psr11ContainerProxy\OverridesProvider;
 use WyriHaximus\AsyncTestUtilities\AsyncTestCase;
 
@@ -47,9 +48,10 @@ final class OverridesProviderTest extends AsyncTestCase
             }
         };
 
-        $list = iteratorOrArrayToArray((new OverridesProvider($proxyList))->list());
+        $list = iteratorOrArrayToArray((new OverridesProvider($proxyList, new CustomOverridesList()))->list());
 
         self::assertSame([
+            'react-parallel.psr-11-container-proxy.dummy' => 'react-parallel.psr-11-container-proxy.dummy',
             'fungi' => 'fungi',
             'pancake' => 'cheese union',
         ], $list);
