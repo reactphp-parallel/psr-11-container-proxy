@@ -18,9 +18,9 @@ jobs:
       - name: 'Get Previous tag'
         if: github.event.pull_request.milestone == null
         id: previoustag
-        uses: "WyriHaximus/github-action-get-previous-tag@master"
-        env:
-          GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+        uses: "WyriHaximus/github-action-get-previous-tag@v1"
+        with:
+          fallback: 1.0.0
       - name: 'Get next minor version'
         if: github.event.pull_request.milestone == null
         id: semvers
